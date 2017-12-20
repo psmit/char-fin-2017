@@ -1,0 +1,12 @@
+.idea
+__pycache__
+data
+data-prep
+mfcc
+exp
+slurm*.out
+log
+core.*
+tmp*
+test*
+lm

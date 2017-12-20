@@ -67,7 +67,7 @@ fi
 
 extra_args=${SLURM_EXTRA_ARGS:-}
 #echo sbatch -x pe63 -p coin,batch-ivb,batch-wsm,batch-hsw${extrashortpart} --job-name="${JOB_PREFIX^^}${sdg_name}" -e "$SDG_LOG_DIR/${sdg_name}-%j.out" -o "$SDG_LOG_DIR/${sdg_name}-%j.out" -t ${time}:00:00 $extra_args --mem-per-cpu ${mem}G $deparg "${@}"
-ret=$(sbatch -xwsm136 -xgpu21 -p coin,batch-ivb,batch-wsm,batch-hsw${extrashortpart} --job-name="${JOB_PREFIX^^}${sdg_name}" -e "$SDG_LOG_DIR/${sdg_name}-%j.out" -o "$SDG_LOG_DIR/${sdg_name}-%j.out" -t ${time}:00:00 $extra_args --mem-per-cpu ${mem}G $deparg "${@}")
+ret=$(sbatch -xwsm136 -p coin,batch-ivb,batch-wsm,batch-hsw${extrashortpart} --job-name="${JOB_PREFIX^^}${sdg_name}" -e "$SDG_LOG_DIR/${sdg_name}-%j.out" -o "$SDG_LOG_DIR/${sdg_name}-%j.out" -t ${time}:00:00 $extra_args --mem-per-cpu ${mem}G $deparg "${@}")
 
 echo $ret
 rid=$(echo $ret | awk '{print $4;}')

@@ -68,7 +68,7 @@ steps/nnet3/xconfig_to_configs.py --xconfig-file $dir/configs/network.xconfig --
 
 fi
 shift1=50
-for start_stage in $(seq -$shift1 $shift1 4000); do
+for start_stage in $(seq -$shift1 $shift1 10000); do
 if [ $[${start_stage}+$shift1] -le $stage ]; then
 continue
 fi
@@ -77,7 +77,7 @@ real_start=$(($stage<$start_stage?$start_stage:$stage))
 if [ $start_stage -lt -1 ]; then
 SLURM_EXTRA_ARGS=" -c 6"
 else
-SLURM_EXTRA_ARGS=" -c 6 -p gpu,gpushort --gres=gpu:teslak80:4"
+SLURM_EXTRA_ARGS=" -c 6 -p gpu,gpushort --gres=gpu:4"
 fi
 d1=""
 d2=""
