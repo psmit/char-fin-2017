@@ -1,0 +1,11 @@
+prep=old
+xconfig_template=definitions/chain/model/tdnn_lstm.xconfig
+num_epochs=4
+
+
+xent_regularize=0.01
+learning_rate_factor=$(echo "print 0.5/$xent_regularize" | python)
+num_chunk_per_minibatch=64,32
+shrink_value=0.99
+deriv_trunc_margin=8
+label_delay=5

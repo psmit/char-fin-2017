@@ -1,0 +1,5 @@
+^.*-ch0.*$
+utt2set ^test$
+utt2env OFFICE|ENTERTAINMENT
+utt2type ^S[0-9][0-9]$
+text.ort1 ^.((?!sta\]|int\]|\*).)*$

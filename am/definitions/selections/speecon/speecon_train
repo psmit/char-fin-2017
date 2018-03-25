@@ -1,0 +1,4 @@
+^.*-ch0.*$
+utt2set ^train$
+utt2env OFFICE|ENTERTAINMENT|CAR|PUBLIC_PLACE
+utt2type ^.*$

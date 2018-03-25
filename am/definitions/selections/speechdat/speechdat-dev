@@ -1,0 +1,4 @@
+.*$
+utt2set ^devel$
+utt2type ^S[0-9]$
+text.ort1 ^((?!\[.*\]$)[^*]*)$

@@ -1,0 +1,6 @@
+tri1_leaves=5000
+tri1_gauss=100000
+tri2_leaves=6000
+tri2_gauss=150000
+tri3_leaves=7000
+tri3_gauss=200000

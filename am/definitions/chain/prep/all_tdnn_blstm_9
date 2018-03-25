@@ -1,0 +1,19 @@
+dataprep=all
+
+tree_numleaves=4000
+leftmost_questions_truncate=-1
+
+#egs related options
+chunk_width=140,100,160 # frames_per_eg
+chunk_left_context=40
+chunk_right_context=40
+model_left_context=4
+model_right_context=4
+left_context_initial=0
+right_context_initial=0
+frames_overlap_per_eg=0
+
+#training related options, needed for egs as well
+frames_per_iter=1200000
+
+recog_lang=data/recog_langs/word_f1_small

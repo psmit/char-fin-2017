@@ -1,0 +1,7 @@
+train_set=data/all_cleaned
+gmm=exp/tri7_all_cleaned
+data_lang=data/lang_all
+
+speed_perturb=true
+min_seg_len=1.55
+vol_perturb=true
