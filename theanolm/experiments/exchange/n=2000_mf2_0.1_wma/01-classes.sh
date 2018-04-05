@@ -4,13 +4,13 @@
 #SBATCH --mem=40G
 #SBATCH --cpus-per-task=8
 
-WORK_DIR=/scratch/work/psmit/chars-fin-2017/theanolm
+WORK_DIR=/scratch/work/psmit/chars-mgb-2018/theanolm
 EXPT_SCRIPT_DIR=`pwd`
 
 data_dir=$WORK_DIR/data
-declare -a TRAIN_FILES=("${data_dir}/morfessor_f2_a0.01_tokens_aff/kielipankki.train")
-DEVEL_FILE="${data_dir}/morfessor_f2_a0.01_tokens_aff/kielipankki.dev"
-EVAL_FILE="${data_dir}/morfessor_f2_a0.01_tokens_aff/kielipakki.dev"
+declare -a TRAIN_FILES=("${data_dir}/morfessor_f2_a0.1_tokens_wma/text.train")
+DEVEL_FILE="${data_dir}/morfessor_f2_a0.1_tokens_wma/text.dev"
+EVAL_FILE="${data_dir}/morfessor_f2_a0.1_tokens_wma/text.dev"
 
 
 source ../../../scripts/run-expt.sh "${0}"

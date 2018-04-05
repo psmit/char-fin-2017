@@ -8,9 +8,9 @@ WORK_DIR=/scratch/work/psmit/chars-fin-2017/theanolm
 EXPT_SCRIPT_DIR=`pwd`
 
 data_dir=$WORK_DIR/data
-declare -a TRAIN_FILES=("${data_dir}/morfessor_f2_a0.01_tokens_aff/kielipankki.train")
-DEVEL_FILE="${data_dir}/morfessor_f2_a0.01_tokens_aff/kielipankki.dev"
-EVAL_FILE="${data_dir}/morfessor_f2_a0.01_tokens_aff/kielipakki.dev"
+declare -a TRAIN_FILES=("${data_dir}/morfessor_f2_a0.01_tokens_pre/kielipankki.train")
+DEVEL_FILE="${data_dir}/morfessor_f2_a0.01_tokens_pre/kielipankki.dev"
+EVAL_FILE="${data_dir}/morfessor_f2_a0.01_tokens_pre/kielipakki.dev"
 
 
 source ../../../scripts/run-expt.sh "${0}"
