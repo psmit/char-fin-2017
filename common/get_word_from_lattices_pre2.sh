@@ -4,12 +4,12 @@
 #SBATCH -n 1
 #SBATCH --cpus-per-task=4
 #SBATCH -N 1
-#SBATCH --mem-per-cpu=15G
+#SBATCH --mem-per-cpu=5G
 #SBATCH -o log/word_lat-%j.out
 #SBATCH -e log/word_lat-%j.out
 
 set -euo pipefail
-
+echo "word lat pre2"
 # Begin configuration section.
 cmd="run.pl --max-jobs-run 4"
 beam=10
@@ -40,7 +40,7 @@ $cmd JOB=1:$nj $dir/log/getwords_${beam}.JOB.log \
       gunzip -c $dir/lat.JOB.gz \| \
       lattice-determinize-pruned --beam=$beam --acoustic-scale=$ac ark:- ark:- \| \
       lattice-project ark:- ark,t:- \| \
-      common/get_words_from_lat.py $lang/words.txt \> $dir/latwords_${beam}.JOB || exit 1;
+      common/get_words_from_lat_pre.py $lang/words.txt \> $dir/latwords_${beam}.JOB || exit 1;
        
 #      lattice-prune --inv-acoustic-scale=$ac --beam=$beam ark:- ark:- \| \
 
