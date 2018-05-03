@@ -10,3 +10,5 @@ core.*
 tmp*
 test*
 lm
+*.h5
+*.classes
