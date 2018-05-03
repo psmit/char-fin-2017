@@ -4,7 +4,7 @@
 #SBATCH -n 1
 #SBATCH --cpus-per-task=4
 #SBATCH -N 1
-#SBATCH --mem-per-cpu=15G
+#SBATCH --mem-per-cpu=5G
 #SBATCH -o log/word_lat-%j.out
 #SBATCH -e log/word_lat-%j.out
 
@@ -36,15 +36,16 @@ nj=$(cat $dir/num_jobs)
 if [ -f  $dir/word_mapper ]; then
 exit 0
 fi
-$cmd JOB=1:$nj $dir/log/getwords_${beam}.JOB.log \
+$cmd JOB=1:$nj $dir/log/getwords_pre.JOB.log \
       gunzip -c $dir/lat.JOB.gz \| \
       lattice-determinize-pruned --beam=$beam --acoustic-scale=$ac ark:- ark:- \| \
       lattice-project ark:- ark,t:- \| \
-      common/get_words_from_lat.py $lang/words.txt \> $dir/latwords_${beam}.JOB || exit 1;
+      common/get_words_from_lat_pre.py $lang/words.txt \> $dir/latwords_pre.JOB || exit 1;
        
 #      lattice-prune --inv-acoustic-scale=$ac --beam=$beam ark:- ark:- \| \
 
 
-sort -u $dir/latwords_${beam}.* | tee $dir/all_seqs_${beam} | utils/int2sym.pl $lang/words.txt | sed "s/+//g" | sed "s/ //g" > $dir/all_words_${beam}
-paste -d" " $dir/all_words_${beam} $dir/all_seqs_${beam} > $dir/word_mapper_${beam}
+sort -u $dir/latwords_pre.* | tee $dir/all_seqs_pre | utils/int2sym.pl $lang/words.txt | sed "s/+//g" | sed "s/ //g" > $dir/all_words_pre
+paste -d" " $dir/all_words_pre $dir/all_seqs_pre > $dir/word_mapper
+
 
