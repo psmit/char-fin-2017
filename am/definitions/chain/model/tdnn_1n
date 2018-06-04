@@ -1,0 +1,10 @@
+
+prep=tdnn
+xconfig_template=definitions/chain/model/tdnn_1n.xconfig
+num_epochs=6
+
+
+learning_rate_factor=$(echo "print 0.5/$xent_regularize" | python)
+l2_regularize=0.0
+
+

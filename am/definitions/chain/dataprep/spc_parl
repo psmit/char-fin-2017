@@ -1,0 +1,6 @@
+train_set=data/spc_parl_train_cleaned
+gmm=exp/tri7_all_cleaned
+data_lang=data/lang_all
+
+speed_perturb=true
+vol_perturb=true

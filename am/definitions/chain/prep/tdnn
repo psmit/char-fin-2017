@@ -1,0 +1,10 @@
+dataprep=spc_parl
+
+tree_numleaves=4000
+
+#egs related options
+chunk_width=150,110,100 # frames_per_eg
+
+#training related options, needed for egs as well
+
+recog_lang=data/recog_langs/temp1

@@ -68,7 +68,7 @@ steps/nnet3/xconfig_to_configs.py --xconfig-file $dir/configs/network.xconfig --
 
 fi
 shift1=50
-for start_stage in $(seq -$shift1 $shift1 10000); do
+for start_stage in $(seq -$shift1 $shift1 1500); do
 if [ $[${start_stage}+$shift1] -le $stage ]; then
 continue
 fi
@@ -76,8 +76,10 @@ fi
 real_start=$(($stage<$start_stage?$start_stage:$stage))
 if [ $start_stage -lt -1 ]; then
 SLURM_EXTRA_ARGS=" -c 6"
+cmda="slurm.pl --mem 4G"
 else
-SLURM_EXTRA_ARGS=" -c 6 -p gpu,gpushort --gres=gpu:4"
+SLURM_EXTRA_ARGS=" -xgpu21,gpu22,gpu20 -c 10 -p gpu,gpushort --gres=gpu:4"
+cmda="run2.pl"
 fi
 d1=""
 d2=""
@@ -93,7 +95,7 @@ train_data=exp/chain/dataprep/$dataprep/data/train
 fi
 
 job chain_${start_stage} 4 4 LAST -- steps/nnet3/chain/train.py \
-    --cmd "$decode_cmd" \
+    --cmd "$cmda" \
     --feat.online-ivector-dir exp/chain/dataprep/$dataprep/ivec/ivectors_train \
     --feat.cmvn-opts "--norm-means=false --norm-vars=false"\
     --chain.xent-regularize $xent_regularize \
@@ -101,7 +103,7 @@ job chain_${start_stage} 4 4 LAST -- steps/nnet3/chain/train.py \
     --chain.l2-regularize $l2_regularize \
     --chain.apply-deriv-weights $apply_deriv_weights \
     --chain.lm-opts="$chain_lm_opts"\
-    --egs.dir "$egs" \
+    --egs.dir "" \
     --egs.opts "--frames-overlap-per-eg $frames_overlap_per_eg" \
     --egs.chunk-width $chunk_width\
     --egs.chunk-right-context $chunk_right_context \

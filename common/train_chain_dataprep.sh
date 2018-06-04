@@ -83,9 +83,9 @@ for set in "train"; do
   job val_data_$set 2 4 LAST        -- utils/validate_data_dir.sh $data/$set
 done
 
-numjobs=100 #$(wc -l < $data/orig/train/spk2utt)
-job ali 2 1  val_lores_train -- steps/align_fmllr.sh --nj $numjobs --cmd "slurm.pl --mem 2G" $data/train_lores $data_lang $gmm $dir/ali
-job lats 2 1 val_lores_train -- steps/align_fmllr_lats.sh --nj $(($numjobs*2)) --cmd "slurm.pl --mem 2G" $data/train_lores $data_lang $gmm $dir/lats
+numjobs=300 #$(wc -l < $data/orig/train/spk2utt)
+job ali 2 4  val_lores_train -- steps/align_fmllr.sh --nj $numjobs --cmd "slurm.pl --mem 2G" $data/train_lores $data_lang $gmm $dir/ali
+job lats 2 4 val_lores_train -- steps/align_fmllr_lats.sh --nj $(($numjobs*2)) --cmd "slurm.pl --mem 2G" $data/train_lores $data_lang $gmm $dir/lats
 
 tcdir=$data/train
 tcsince=val_data_train
